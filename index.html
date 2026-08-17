@@ -10,6 +10,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
+<script>
+  // Applies a saved palette choice before first paint, so reloading the
+  // page doesn't flash the default theme before switching to the saved one.
+  try {
+    var savedTheme = localStorage.getItem('starnail-theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  } catch (e) { /* storage unavailable, default theme just stays active */ }
+</script>
 </head>
 <body>
 
@@ -259,6 +267,30 @@
     <span>© <span id="year"></span> Star Nail &amp; Beautyspa · Bern</span>
   </div>
 </footer>
+
+<div class="theme-switcher" id="themeSwitcher">
+  <div class="theme-switcher-panel" id="themePanel">
+    <p class="theme-switcher-title">Farbwelt</p>
+    <p class="theme-switcher-hint">Nur zur Ansicht in diesem Vorschlag – probier ruhig aus, welche dir am besten gefällt.</p>
+    <div class="theme-swatches">
+      <button class="theme-swatch" data-theme="" type="button">
+        <span class="theme-swatch-dot" style="background:#4a1b5f"></span>Aubergine
+      </button>
+      <button class="theme-swatch" data-theme="terracotta" type="button">
+        <span class="theme-swatch-dot" style="background:#a8502f"></span>Terrakotta
+      </button>
+      <button class="theme-swatch" data-theme="smaragd" type="button">
+        <span class="theme-swatch-dot" style="background:#17553d"></span>Smaragd
+      </button>
+      <button class="theme-swatch" data-theme="rose" type="button">
+        <span class="theme-swatch-dot" style="background:#7a4448"></span>Rosé
+      </button>
+    </div>
+  </div>
+  <button class="theme-switcher-toggle" id="themeToggle" type="button" aria-expanded="false" aria-controls="themePanel" aria-label="Farbschema wählen">
+    <span aria-hidden="true">🎨</span>
+  </button>
+</div>
 
 <script src="assets/js/script.js"></script>
 </body>

@@ -146,6 +146,49 @@ if (mockupScales.length) {
   }
 }
 
+// ===== Theme switcher (palette picker) =====
+const THEME_STORAGE_KEY = 'starnail-theme';
+const themeSwitcher = document.getElementById('themeSwitcher');
+if (themeSwitcher) {
+  const themeToggle = document.getElementById('themeToggle');
+  const swatches = themeSwitcher.querySelectorAll('.theme-swatch');
+
+  const applyTheme = (theme) => {
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    swatches.forEach((swatch) => {
+      swatch.classList.toggle('active', (swatch.dataset.theme || '') === (theme || ''));
+    });
+  };
+
+  // Reflect whatever theme.js (inline in <head>) already applied before paint,
+  // so the swatch list matches on load instead of defaulting back to Aubergine.
+  applyTheme(document.documentElement.getAttribute('data-theme') || '');
+
+  themeToggle.addEventListener('click', () => {
+    const isOpen = themeSwitcher.classList.toggle('open');
+    themeToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  swatches.forEach((swatch) => {
+    swatch.addEventListener('click', () => {
+      const theme = swatch.dataset.theme || '';
+      applyTheme(theme);
+      try { localStorage.setItem(THEME_STORAGE_KEY, theme); } catch (e) { /* storage unavailable, theme just won't persist */ }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!themeSwitcher.contains(e.target)) {
+      themeSwitcher.classList.remove('open');
+      themeToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // ===== Footer year =====
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
