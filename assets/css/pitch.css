@@ -18,7 +18,7 @@
   max-width:var(--container);margin:0 auto;
   display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;
 }
-.mockup-col{display:flex;flex-direction:column;gap:16px;}
+.mockup-col{display:flex;flex-direction:column;gap:16px;min-width:0;}
 .mockup-label{
   display:inline-flex;align-self:flex-start;font-family:var(--font-sans);font-size:.8rem;font-weight:600;
   letter-spacing:.04em;padding:.4em 1em;border-radius:999px;
@@ -39,10 +39,9 @@
   background:#fff;padding:.25em 1em;border-radius:999px;flex:1;max-width:220px;
 }
 
-.mockup-viewport{width:100%;aspect-ratio:4/3;overflow:hidden;position:relative;background:#f7f2fa;}
+.mockup-viewport{width:100%;min-height:260px;overflow:hidden;position:relative;background:#f7f2fa;}
 .mockup-scale{
   width:1160px;transform-origin:top left;
-  transform:scale(.398);
 }
 
 /* --- Old mockup content (faithful recreation of starnail.ch) --- */

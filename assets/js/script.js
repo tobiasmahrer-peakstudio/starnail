@@ -120,5 +120,32 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => io.observe(el));
 
+// ===== Pitch page: scale mockup previews to fit their frame exactly =====
+const mockupScales = document.querySelectorAll('.mockup-scale');
+if (mockupScales.length) {
+  const fitMockups = () => {
+    mockupScales.forEach(scaleEl => {
+      const viewport = scaleEl.parentElement;
+      scaleEl.style.transform = 'none';
+      const naturalWidth = scaleEl.offsetWidth;
+      const naturalHeight = scaleEl.offsetHeight;
+      if (!naturalWidth) return;
+      const scale = viewport.clientWidth / naturalWidth;
+      scaleEl.style.transform = `scale(${scale})`;
+      viewport.style.height = `${naturalHeight * scale}px`;
+    });
+  };
+  fitMockups();
+  window.addEventListener('load', fitMockups);
+  window.addEventListener('resize', () => {
+    clearTimeout(window.__mockupResizeTimer);
+    window.__mockupResizeTimer = setTimeout(fitMockups, 150);
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitMockups);
+  }
+}
+
 // ===== Footer year =====
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
