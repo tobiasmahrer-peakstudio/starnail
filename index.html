@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>
   // Applies a saved palette choice before first paint, so reloading the
@@ -20,6 +20,21 @@
 </script>
 </head>
 <body>
+
+<!-- Icon sprite: one inline definition per icon, referenced via <use> everywhere
+     below. stroke="currentColor" so every icon inherits whatever text color is
+     active — including across the palette switcher's themes, automatically. -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+  <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22 12a10 10 0 1 0-11.5 9.87v-6.98H7.9V12h2.6V9.8c0-2.56 1.52-3.98 3.86-3.98 1.12 0 2.29.2 2.29.2v2.5h-1.29c-1.27 0-1.67.79-1.67 1.6V12h2.84l-.45 2.89h-2.39v6.98A10 10 0 0 0 22 12Z"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+</svg>
 
 <div class="noise-overlay" aria-hidden="true"></div>
 
@@ -34,14 +49,14 @@
 
     <nav class="main-nav" id="mainNav">
       <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
       <a href="#ueber-uns">Über uns</a>
-      <a href="#standort">Standort &amp; Öffnungszeiten</a>
-      <a href="#buchen">Kontakt</a>
+      <a href="#standort">Standort</a>
     </nav>
 
     <div class="header-actions">
       <a href="tel:+41313110502" class="phone-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg class="icon icon-sm"><use href="#icon-phone"></use></svg>
         031 311 05 02
       </a>
       <a href="#buchen" class="btn btn-primary">Termin buchen</a>
@@ -61,7 +76,7 @@
       <div class="hero-copy reveal">
         <p class="eyebrow">Nagelstudio &amp; Beauty Spa · Bern Altstadt</p>
         <h1>Komm vorbei &amp; <em>lass dich verwöhnen.</em></h1>
-        <p class="hero-lead">Professionelle Pflege für Hände, Füsse und Wimpern – in ruhiger Atmosphäre, mit viel Liebe zum Detail und Produkten, denen du vertrauen kannst.</p>
+        <p class="hero-lead">Maniküre, Pediküre und Wimpernlifting mitten in der Berner Altstadt – mit Produkten, denen wir selbst vertrauen, und einem Team, das sich wirklich Zeit für dich nimmt.</p>
 
         <div class="status-badge" id="statusBadge">
           <span class="status-dot" id="statusDot"></span>
@@ -94,41 +109,110 @@
     <div class="hero-wave" aria-hidden="true"></div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Maniküre</span><span class="marquee-dot">✦</span>
+      <span>Pediküre</span><span class="marquee-dot">✦</span>
+      <span>Gel &amp; Shellac</span><span class="marquee-dot">✦</span>
+      <span>Nailart</span><span class="marquee-dot">✦</span>
+      <span>Wimpernlifting</span><span class="marquee-dot">✦</span>
+      <span>French</span><span class="marquee-dot">✦</span>
+      <span>Handpflege</span><span class="marquee-dot">✦</span>
+      <span>Maniküre</span><span class="marquee-dot">✦</span>
+      <span>Pediküre</span><span class="marquee-dot">✦</span>
+      <span>Gel &amp; Shellac</span><span class="marquee-dot">✦</span>
+      <span>Nailart</span><span class="marquee-dot">✦</span>
+      <span>Wimpernlifting</span><span class="marquee-dot">✦</span>
+      <span>French</span><span class="marquee-dot">✦</span>
+      <span>Handpflege</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
   <!-- LEISTUNGEN -->
   <section class="services" id="leistungen">
-    <div class="section-head reveal">
-      <p class="eyebrow center">Unsere Leistungen</p>
-      <h2>Alles, damit du dich rundum wohlfühlst</h2>
-      <p class="section-lead">Von der klassischen Maniküre bis zum Wimpernlifting – jede Behandlung wird individuell auf dich abgestimmt. Die genauen Preise siehst du transparent bei der Online-Buchung.</p>
+    <div class="section-head-left reveal">
+      <div class="section-kicker">
+        <span class="kicker-num">01</span><span class="kicker-line"></span>
+        <span class="kicker-label">Unsere Leistungen</span>
+      </div>
+      <h2>Für Hände, Füsse und Blick</h2>
+      <p class="section-lead">Jede Behandlung ist auf dich abgestimmt – von der schnellen Auffrischung bis zur ausführlichen Pflege-Auszeit. Die genauen Preise siehst du transparent bei der Online-Buchung.</p>
     </div>
 
-    <div class="service-grid">
-      <article class="service-card reveal">
-        <div class="service-img"><img src="assets/img/hands.jpg" alt="Maniküre und Nailart an gepflegten Händen" loading="lazy"></div>
-        <div class="service-body">
+    <div class="service-rows">
+      <article class="service-row reveal">
+        <div class="service-row-img"><img src="assets/img/hands.jpg" alt="Maniküre und Nailart an gepflegten Händen" loading="lazy"></div>
+        <div class="service-row-body">
+          <span class="service-row-num">01</span>
           <h3>Hände</h3>
-          <p>Klassische &amp; Gel-Maniküre, French, Nailart und Verstärkung – präzise gefeilt, schön lackiert, liebevoll bis ins letzte Detail.</p>
+          <div class="service-tags">
+            <span>Klassische Maniküre</span><span>Gel &amp; Shellac</span><span>French</span><span>Nailart</span><span>Verstärkung</span>
+          </div>
+          <p>Präzise gefeilt, sauber lackiert, liebevoll bis ins letzte Detail – ob dezent oder auffällig, French oder Nailart.</p>
           <a href="#buchen" class="service-link">Hände buchen <span>⟶</span></a>
         </div>
       </article>
 
-      <article class="service-card reveal">
-        <div class="service-img"><img src="assets/img/feet.jpg" alt="Pediküre an gepflegten Füssen" loading="lazy"></div>
-        <div class="service-body">
+      <article class="service-row service-row-reverse reveal">
+        <div class="service-row-img"><img src="assets/img/feet.jpg" alt="Pediküre an gepflegten Füssen" loading="lazy"></div>
+        <div class="service-row-body">
+          <span class="service-row-num">02</span>
           <h3>Füsse</h3>
-          <p>Wohltuende Pediküre mit Hornhautentfernung, Pflegebad und Lack deiner Wahl – für Füsse, die sich wieder leicht anfühlen.</p>
+          <div class="service-tags">
+            <span>Pediküre</span><span>Hornhautentfernung</span><span>Pflegebad</span><span>Lack nach Wahl</span>
+          </div>
+          <p>Eine wohltuende Pause für deine Füsse – mit Pflegebad, sanfter Hornhautentfernung und Lack in deiner Wunschfarbe.</p>
           <a href="#buchen" class="service-link">Füsse buchen <span>⟶</span></a>
         </div>
       </article>
 
-      <article class="service-card reveal">
-        <div class="service-img"><img src="assets/img/lashes.jpg" alt="Gepflegte Wimpern nach Lifting" loading="lazy"></div>
-        <div class="service-body">
+      <article class="service-row reveal">
+        <div class="service-row-img"><img src="assets/img/lashes.jpg" alt="Gepflegte Wimpern nach Lifting" loading="lazy"></div>
+        <div class="service-row-body">
+          <span class="service-row-num">03</span>
           <h3>Wimpern</h3>
-          <p>Wimpernlifting &amp; -extensions für einen wachen, natürlichen Blick – ganz ohne Mascara, jeden Morgen aufs Neue.</p>
+          <div class="service-tags">
+            <span>Wimpernlifting</span><span>Wimpernextensions</span>
+          </div>
+          <p>Ein wacher, natürlicher Blick – ganz ohne Mascara, jeden Morgen aufs Neue.</p>
           <a href="#buchen" class="service-link">Wimpern buchen <span>⟶</span></a>
         </div>
       </article>
+    </div>
+  </section>
+
+  <!-- ABLAUF -->
+  <section class="steps" id="ablauf">
+    <div class="section-head-left reveal">
+      <div class="section-kicker">
+        <span class="kicker-num">02</span><span class="kicker-line"></span>
+        <span class="kicker-label">So läuft's ab</span>
+      </div>
+      <h2>Dein Termin in vier Schritten</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Online buchen</h3>
+        <p>Behandlung wählen, Wunschzeit reservieren – in weniger als einer Minute.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Ankommen &amp; durchatmen</h3>
+        <p>Kurz ankommen, kurz erzählen, was du dir wünschst.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Deine Behandlung</h3>
+        <p>Wir nehmen uns die Zeit, die es braucht – nicht mehr, nicht weniger.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">04</span>
+        <h3>Mit gutem Gefühl raus</h3>
+        <p>Und wenn du magst: gleich den nächsten Termin sichern.</p>
+      </div>
     </div>
   </section>
 
@@ -140,16 +224,35 @@
         <div class="about-img-badge">Mitten in Bern<br><small>Schweizerhofpassage</small></div>
       </div>
       <div class="about-copy reveal">
-        <p class="eyebrow">Warum Star Nail &amp; Beautyspa</p>
+        <div class="section-kicker">
+          <span class="kicker-num">03</span><span class="kicker-line"></span>
+          <span class="kicker-label">Warum Star Nail &amp; Beautyspa</span>
+        </div>
         <h2>Persönliche Pflege, auf die du dich verlassen kannst</h2>
-        <p class="section-lead">Bei uns bist du keine Nummer. Wir nehmen uns Zeit für dich, hören zu, was du dir wünschst, und sorgen für ein Ergebnis, das lange schön bleibt – in einer Atmosphäre, in der du einfach abschalten kannst.</p>
+        <p class="section-lead">Bei uns bist du keine Nummer. Wir nehmen uns Zeit für dich, hören zu, was du dir wünschst, und sorgen für ein Ergebnis, das lange schön bleibt.</p>
 
-        <ul class="feature-list">
-          <li><span class="feature-icon">🤍</span><div><strong>Sorgfalt &amp; Hygiene</strong><p>Sterile Instrumente und höchste Sauberkeitsstandards bei jeder Behandlung.</p></div></li>
-          <li><span class="feature-icon">💜</span><div><strong>Erfahrene Hände</strong><p>Geschultes Team mit Gespür für Details und aktuelle Trends.</p></div></li>
-          <li><span class="feature-icon">📍</span><div><strong>Zentrale Lage</strong><p>Bequem erreichbar in der Berner Altstadt, unweit des Bahnhofs.</p></div></li>
-          <li><span class="feature-icon">🗓️</span><div><strong>Einfache Terminwahl</strong><p>Online buchen, wann immer es dir passt – rund um die Uhr.</p></div></li>
-        </ul>
+        <div class="feature-tiles">
+          <div class="feature-tile">
+            <svg class="icon"><use href="#icon-shield"></use></svg>
+            <strong>Sorgfalt &amp; Hygiene</strong>
+            <p>Sterile Instrumente und höchste Sauberkeitsstandards bei jeder Behandlung.</p>
+          </div>
+          <div class="feature-tile">
+            <svg class="icon"><use href="#icon-users"></use></svg>
+            <strong>Erfahrene Hände</strong>
+            <p>Geschultes Team mit Gespür für Details und aktuelle Trends.</p>
+          </div>
+          <div class="feature-tile">
+            <svg class="icon"><use href="#icon-pin"></use></svg>
+            <strong>Zentrale Lage</strong>
+            <p>Bequem erreichbar in der Berner Altstadt, unweit des Bahnhofs.</p>
+          </div>
+          <div class="feature-tile">
+            <svg class="icon"><use href="#icon-calendar"></use></svg>
+            <strong>Einfache Terminwahl</strong>
+            <p>Online buchen, wann immer es dir passt – rund um die Uhr.</p>
+          </div>
+        </div>
 
         <a href="#buchen" class="btn btn-primary">Termin vereinbaren</a>
       </div>
@@ -159,7 +262,10 @@
   <!-- BUCHEN -->
   <section class="booking" id="buchen">
     <div class="section-head reveal">
-      <p class="eyebrow center">Jetzt buchen</p>
+      <div class="section-kicker section-kicker-center">
+        <span class="kicker-num">04</span><span class="kicker-line"></span>
+        <span class="kicker-label">Jetzt buchen</span>
+      </div>
       <h2>Wähle deine Behandlung &amp; deinen Wunschtermin</h2>
       <p class="section-lead">Buche direkt online – einfach, schnell und rund um die Uhr verfügbar. Lieber persönlich? Ruf uns gerne an.</p>
     </div>
@@ -181,7 +287,10 @@
   <!-- STANDORT -->
   <section class="location" id="standort">
     <div class="section-head reveal">
-      <p class="eyebrow center">Standort &amp; Öffnungszeiten</p>
+      <div class="section-kicker section-kicker-center">
+        <span class="kicker-num">05</span><span class="kicker-line"></span>
+        <span class="kicker-label">Standort &amp; Öffnungszeiten</span>
+      </div>
       <h2>Wir freuen uns auf deinen Besuch</h2>
     </div>
 
@@ -195,13 +304,13 @@
 
       <div class="location-details">
         <div class="detail-card">
-          <h3>Adresse</h3>
+          <h3><svg class="icon icon-sm"><use href="#icon-pin"></use></svg> Adresse</h3>
           <p>Schweizerhofpassage 38 EG<br>3011 Bern</p>
           <a class="detail-link" href="https://www.google.com/maps/search/?api=1&query=Star+Nails+%26+Beauty+Spa+Schweizerhofpassage+38+3011+Bern" target="_blank" rel="noopener">Route planen ⟶</a>
         </div>
 
         <div class="detail-card">
-          <h3>Öffnungszeiten</h3>
+          <h3><svg class="icon icon-sm"><use href="#icon-clock"></use></svg> Öffnungszeiten</h3>
           <table class="hours-table" id="hoursTable">
             <tr data-day="1"><td>Montag</td><td>09:00–19:00 Uhr</td></tr>
             <tr data-day="2"><td>Dienstag</td><td>09:00–19:00 Uhr</td></tr>
@@ -218,14 +327,52 @@
         </div>
 
         <div class="detail-card">
-          <h3>Kontakt</h3>
+          <h3><svg class="icon icon-sm"><use href="#icon-phone"></use></svg> Kontakt</h3>
           <p><a href="tel:+41313110502">031 311 05 02</a></p>
           <div class="social-links">
-            <a href="https://www.instagram.com/starnails_beautyspa/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/p/Star-nails-Beauty-Spa-100063736953540/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+            <a href="https://www.instagram.com/starnails_beautyspa/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon icon-sm"><use href="#icon-instagram"></use></svg> Instagram</a>
+            <a href="https://www.facebook.com/p/Star-nails-Beauty-Spa-100063736953540/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon icon-sm"><use href="#icon-facebook"></use></svg> Facebook</a>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-head-left reveal">
+      <div class="section-kicker">
+        <span class="kicker-num">06</span><span class="kicker-line"></span>
+        <span class="kicker-label">Häufige Fragen</span>
+      </div>
+      <h2>Kurz erklärt</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary>Muss ich vorher einen Termin buchen?
+          <svg class="icon icon-sm faq-chevron"><use href="#icon-chevron"></use></svg>
+        </summary>
+        <p>Ja – wir arbeiten mit Termin, damit wir uns wirklich Zeit für dich nehmen können. Online geht's in unter einer Minute, telefonisch unter <a href="tel:+41313110502">031 311 05 02</a>.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie lange dauert eine Behandlung?
+          <svg class="icon icon-sm faq-chevron"><use href="#icon-chevron"></use></svg>
+        </summary>
+        <p>Das kommt auf die Behandlung an – von der schnellen Auffrischung bis zur ausführlichen Pflege. Die genaue Dauer siehst du bei der Auswahl in der Online-Buchung.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Ich muss meinen Termin verschieben – was jetzt?
+          <svg class="icon icon-sm faq-chevron"><use href="#icon-chevron"></use></svg>
+        </summary>
+        <p>Kein Problem, ruf uns einfach kurz an: <a href="tel:+41313110502">031 311 05 02</a>. Wir finden eine neue Zeit, die passt.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wo genau finde ich euch?
+          <svg class="icon icon-sm faq-chevron"><use href="#icon-chevron"></use></svg>
+        </summary>
+        <p>In der Schweizerhofpassage 38, mitten in der Berner Altstadt – Karte und Route findest du weiter oben im Abschnitt „Standort".</p>
+      </details>
     </div>
   </section>
 
@@ -244,8 +391,8 @@
     <div class="footer-col">
       <h4>Navigation</h4>
       <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
       <a href="#ueber-uns">Über uns</a>
-      <a href="#buchen">Termin buchen</a>
       <a href="#standort">Standort</a>
     </div>
 
@@ -257,8 +404,8 @@
 
     <div class="footer-col">
       <h4>Folge uns</h4>
-      <a href="https://www.instagram.com/starnails_beautyspa/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/p/Star-nails-Beauty-Spa-100063736953540/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/starnails_beautyspa/" target="_blank" rel="noopener"><svg class="icon icon-sm"><use href="#icon-instagram"></use></svg> Instagram</a>
+      <a href="https://www.facebook.com/p/Star-nails-Beauty-Spa-100063736953540/" target="_blank" rel="noopener"><svg class="icon icon-sm"><use href="#icon-facebook"></use></svg> Facebook</a>
     </div>
   </div>
   <div class="footer-bottom">
