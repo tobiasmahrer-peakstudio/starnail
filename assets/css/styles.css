@@ -246,7 +246,11 @@ h1{font-size:clamp(2.6rem,4.6vw,4rem);}
 .trust-item strong{color:var(--accent-900);font-family:var(--font-serif);font-size:1.1rem;font-weight:600;}
 .trust-item span{color:var(--ink-soft);}
 
-.hero-gallery{position:relative;height:520px;}
+/* width:100% is load-bearing: both children are position:absolute (no
+   in-flow content), so without an explicit width this grid item has
+   nothing to size itself from and collapses to 0 on narrower tracks
+   where grid's stretch alignment doesn't rescue it. */
+.hero-gallery{position:relative;height:520px;width:100%;}
 .gallery-frame{
   position:absolute;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);
   border:6px solid #fff;
